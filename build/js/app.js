@@ -1,0 +1,1 @@
+"use strict";var a=["Hydrogen","Helium","Lithium","Beryl­lium"],a2=a.map(function(n){return n.length}),a3=a.map(function(n){return n.length});
