@@ -1,8 +1,10 @@
 var gulp = require('gulp');
+
 var gutil = require('gulp-util');
 var connect = require('gulp-connect');
 var babel = require('gulp-babel');
 var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
 var less = require('gulp-less');
 var lessPluginCleanCSS = require('less-plugin-clean-css');
 var lessPluginAutoPrefix = require('less-plugin-autoprefix');
@@ -23,14 +25,16 @@ gulp.task('scripts', function() {
 
 // Styles Tasks - Turns LESS to CSS, autoprefixes and minifies
 gulp.task('less', function() {
-	gulp.src('app/styles/*.less')
+	gulp.src(['app/styles/normalize.less', 'app/styles/main.less'])
 			.on('error', gutil.log)
 			.pipe(less({
 				plugins: [autoprefix, cleancss]
 			}))
+			.pipe(concat('main.css'))
 			.pipe(gulp.dest('build/styles'))
 });
 
+// HTML Task - Reloads HTML
 gulp.task('html', function () {
   gulp.src('app/*.html')
     .pipe(connect.reload());
@@ -43,7 +47,7 @@ gulp.task('watch', function() {
 	gulp.watch(['app/*.html'], ['html']);
 });
 
-// Start localhost server
+// Connect Task - Starts localhost:8080
 gulp.task('connect', function() {
 	connect.server({
 		root: 'app',
