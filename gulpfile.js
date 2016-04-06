@@ -20,7 +20,8 @@ gulp.task('scripts', function() {
 			}))
 			.on('error', gutil.log)
 			.pipe(uglify())
-			.pipe(gulp.dest('build/js'))
+			.pipe(concat('build.js'))
+			.pipe(gulp.dest('app/js'))
 });
 
 // Styles Tasks - Turns LESS to CSS, autoprefixes and minifies
@@ -30,8 +31,9 @@ gulp.task('less', function() {
 			.pipe(less({
 				plugins: [autoprefix, cleancss]
 			}))
-			.pipe(concat('main.css'))
-			.pipe(gulp.dest('build/styles'))
+			.pipe(concat('build.css'))
+			.pipe(gulp.dest('app/styles'))
+			.pipe(connect.reload());
 });
 
 // HTML Task - Reloads HTML
@@ -44,7 +46,7 @@ gulp.task('html', function () {
 gulp.task('watch', function() {
 	gulp.watch('app/js/*.js', ['scripts']);
 	gulp.watch('app/styles/*.less', ['less']);
-	gulp.watch(['app/*.html'], ['html']);
+	gulp.watch('app/*.html', ['html']);
 });
 
 // Connect Task - Starts localhost:8080
