@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
+var connect = require('gulp-connect');
 var babel = require('gulp-babel');
 var uglify = require('gulp-uglify');
 var less = require('gulp-less');
@@ -30,10 +31,25 @@ gulp.task('less', function() {
 			.pipe(gulp.dest('build/styles'))
 });
 
+gulp.task('html', function () {
+  gulp.src('app/*.html')
+    .pipe(connect.reload());
+});
+
 // Watch Task - Watches javascript and stylesheets for changes
 gulp.task('watch', function() {
 	gulp.watch('app/js/*.js', ['scripts']);
 	gulp.watch('app/styles/*.less', ['less']);
+	gulp.watch(['app/*.html'], ['html']);
 });
 
-gulp.task('default', ['scripts', 'less', 'watch']);
+// Start localhost server
+gulp.task('connect', function() {
+	connect.server({
+		root: 'app',
+		port: 8080,
+		livereload: true
+	})
+});
+
+gulp.task('default', ['scripts', 'less', 'connect', 'watch']);
