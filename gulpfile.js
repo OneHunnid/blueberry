@@ -33,7 +33,7 @@ gulp.task('less', function() {
 			}))
 			.pipe(concat('build.css'))
 			.pipe(gulp.dest('app/styles'))
-			.pipe(connect.reload());
+			.pipe(connect.reload()); 
 });
 
 // HTML Task - Reloads HTML
