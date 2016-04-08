@@ -1,16 +1,14 @@
 var gulp = require('gulp');
-var plugins = require('gulp-load-plugins')();
+var plugins = require('gulp-load-plugins')({
+		name: {
+			'gulp-concat-sourcemap' : 'concat'
+		}
+});
 
-var gutil = require('gulp-util');
-var connect = require('gulp-connect');
-var uglify = require('gulp-uglify');
-var less = require('gulp-less');
 var lessPluginCleanCSS = require('less-plugin-clean-css');
 var lessPluginAutoPrefix = require('less-plugin-autoprefix');
 var source = require('vinyl-source-stream');
-var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
-var concat = require('gulp-concat-sourcemap');
 var exec = require('child_process').exec;
 var babel = require('babelify');
 var watchify = require('watchify');
@@ -32,28 +30,28 @@ var b = watchify(browserify(opts));
 // Add transformations here
 b.transform("babelify", {presets: ["es2015", "react"]})
 b.on('update', bundle); // on any dep update, runs the bundler
-b.on('log', gutil.log); // output build logs to terminal
+b.on('log', plugins.util.log); // output build logs to terminal
 
 function bundle() {
 		return b.bundle()
-		.on('error', gutil.log.bind(gutil, 'Browserify Error')) // log errors if they happen
+		.on('error', plugins.util.log.bind(plugins.util, 'Browserify Error')) // log errors if they happen
 		.pipe(source('build.js'))
-		.pipe(sourcemaps.write('./')) // write .map file
+		.pipe(plugins.sourcemaps.write('./')) // write .map file
 		.pipe(gulp.dest('./app/js'))
-		.pipe(connect.reload());
+		.pipe(plugins.connect.reload());
 }
 
 
 
 // This 'js' task needs fixin' -- compileJS does not refresh the DOM when changes are made
-// gulp.task('js', require('./gulp-tasks/compileJS')(gulp, plugins, gutil, source, sourcemaps, assign, concat, exec, babel, watchify, browserify, connect));
+// gulp.task('js', require('./gulp-tasks/compileJS')(gulp, plugins, gutil, source, plugins.sourcemaps, assign, concat, exec, babel, watchify, browserify, plugins.connect));
 
 gulp.task('js', bundle);
-gulp.task('less', require('./gulp/gulp-tasks/compileStyles')(gulp, plugins, gutil, less, concat, connect));
-gulp.task('html', require('./gulp/gulp-tasks/reloadHTML')(gulp, plugins, connect));
-gulp.task('connect', require('./gulp/gulp-tasks/webserver')(gulp, plugins, connect));
+gulp.task('plugins.less', require('./gulp/gulp-tasks/compileStyles')(gulp, plugins, plugins.util, plugins.less, plugins.concat, plugins.connect));
+gulp.task('html', require('./gulp/gulp-tasks/reloadHTML')(gulp, plugins, plugins.connect));
+gulp.task('plugins.connect', require('./gulp/gulp-tasks/webserver')(gulp, plugins, plugins.connect));
 
-gulp.task('default', ['js', 'less', 'connect'], function() {
-	gulp.watch('app/styles/*.less', ['less']);
+gulp.task('default', ['js', 'plugins.less', 'plugins.connect'], function() {
+	gulp.watch('app/styles/*.plugins.less', ['plugins.less']);
 	gulp.watch(['app/*.html'], ['html']);
 });

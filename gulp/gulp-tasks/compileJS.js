@@ -1,4 +1,4 @@
-module.exports = function(gulp, plugins, gutil, source, sourcemaps, assign, concat, exec, babel, watchify, browserify, connect) {
+module.exports = function(gulp, plugins, gutil, source, pluginsSourcemaps, assign, concat, exec, babel, watchify, browserify, connect) {
   return function() {
 
     // Custom browserify options
@@ -18,7 +18,7 @@ module.exports = function(gulp, plugins, gutil, source, sourcemaps, assign, conc
     		return b.bundle()
     		.on('error', gutil.log.bind(gutil, 'Browserify Error')) // log errors if they happen
     		.pipe(source('build.js'))
-    		.pipe(sourcemaps.write('./')) // write .map file
+    		.pipe(plugins.sourcemaps.write('./')) // write .map file
     		.pipe(gulp.dest('./app/js'));
     }
   };

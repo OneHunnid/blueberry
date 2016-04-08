@@ -1,6 +1,6 @@
-module.exports = function(gulp, plugins, connect) {
+module.exports = function(gulp, plugins, pluginsConnect) {
   return function() {
     gulp.src('app/*.html')
-      .pipe(connect.reload());
+      .pipe(plugins.connect.reload());
   };
 };

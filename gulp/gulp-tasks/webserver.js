@@ -1,6 +1,6 @@
-module.exports = function(gulp, plugins, connect) {
+module.exports = function(gulp, plugins, pluginsConnect) {
   return function() {
-    connect.server({
+    plugins.connect.server({
       root: 'app',
       port: 8080,
       livereload: true
