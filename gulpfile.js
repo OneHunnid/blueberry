@@ -2,9 +2,7 @@ var gulp = require('gulp');
 
 var gutil = require('gulp-util');
 var connect = require('gulp-connect');
-// var babel = require('gulp-babel');
 var uglify = require('gulp-uglify');
-// var concat = require('gulp-concat');
 var less = require('gulp-less');
 var lessPluginCleanCSS = require('less-plugin-clean-css');
 var lessPluginAutoPrefix = require('less-plugin-autoprefix');
@@ -24,12 +22,10 @@ autoprefix = new lessPluginAutoPrefix({ browser: ["last 2 versions"] });
 // Add custom browserify options here
 var customOpts = {
 	entries: ['./app/js/app.js'],
-	debug: true;
+	debug: true
 };
 var opts = assign({}, watchify.args, customOpts);
 var b = watchify(browserify(opts));
-
-gulp.task('js', bundle);
 
 // Add transformations here
 b.transform("babelify", {presets: ["es2015", "react"]})
@@ -47,16 +43,8 @@ function bundle() {
 
 // ========================================================================
 
-// Scripts Tasks - Compiles ECMAScript 6 and minifies
-gulp.task('scripts', function() {
-	// gulp.src('app/js/*.js')
-	// 		.pipe(babel({
-	// 			presets: ['es2015']
-	// 		}))
-	// 		.on('error', gutil.log)
-	// 		.pipe(uglify())
-	// 		.pipe(gulp.dest('build/js'))
-});
+// JS Task - Renders React Application
+gulp.task('js', bundle);
 
 // Styles Tasks - Turns LESS to CSS, autoprefixes and minifies
 gulp.task('less', function() {
@@ -65,8 +53,9 @@ gulp.task('less', function() {
 			.pipe(less({
 				plugins: [autoprefix, cleancss]
 			}))
-			.pipe(concat('main.css'))
-			.pipe(gulp.dest('build/styles'))
+			.pipe(concat('build.css'))
+			.pipe(gulp.dest('app/styles'))
+			.pipe(connect.reload());
 });
 
 // HTML Task - Reloads HTML
@@ -77,7 +66,6 @@ gulp.task('html', function () {
 
 // Watch Task - Watches javascript and stylesheets for changes
 gulp.task('watch', function() {
-	gulp.watch('app/js/*.js', ['scripts']);
 	gulp.watch('app/styles/*.less', ['less']);
 	gulp.watch(['app/*.html'], ['html']);
 });
@@ -91,4 +79,4 @@ gulp.task('connect', function() {
 	})
 });
 
-gulp.task('default', ['scripts', 'less', 'connect', 'watch']);
+gulp.task('default', ['js', 'less', 'connect', 'watch']);
