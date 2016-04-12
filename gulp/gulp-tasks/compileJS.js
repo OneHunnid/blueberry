@@ -19,7 +19,10 @@ module.exports = function(gulp, plugins, gutil, source, pluginsSourcemaps, assig
     		.on('error', gutil.log.bind(gutil, 'Browserify Error')) // log errors if they happen
     		.pipe(source('build.js'))
     		.pipe(plugins.sourcemaps.write('./')) // write .map file
-    		.pipe(gulp.dest('./app/js'));
+    		.pipe(gulp.dest('./app/js'))
+        .pipe(plugins.connect.reload());
     }
+
+    bundle();
   };
 };
