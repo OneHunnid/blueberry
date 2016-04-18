@@ -1,2 +1,4 @@
 .DS_Store
 node_modules/
+app/styles/build.css
+app/js/build.js
