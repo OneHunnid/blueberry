@@ -2,4 +2,8 @@
 node_modules/
 app/styles/build.css
 app/styles/build.css.map
-app/js/build.js
+build/styles/build.css.map
+app/scripts/build.js
+npm-debug.log
+.publish
+build
