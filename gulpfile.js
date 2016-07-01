@@ -37,7 +37,7 @@ gulp.task('copy-scripts', require('./gulp/gulp-tasks/copy-scripts')(gulp));
 gulp.task('build', ['copy-styles', 'copy-scripts', 'copy-assets', 'copy-html']);
 
 // Deploy build folder to a Github Pages branch for the world to see
-// gulp.task('deploy', require('./gulp/gulp-tasks/deploy')(gulp, ghPages));
+gulp.task('deploy', require('./gulp/gulp-tasks/deploy')(gulp, ghPages));
 
 // Default tasks
 gulp.task('default', ['js', 'less', 'connect', 'watch']);
