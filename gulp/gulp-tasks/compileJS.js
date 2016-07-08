@@ -10,7 +10,7 @@ module.exports = function(gulp, plugins, ENTRY_POINT, JS_BUILD, JS_DEST, gutil, 
     var b = watchify(browserify(opts));
 
     // Transformations
-    b.transform("babelify", {presets: ["es2015", "react"]})
+    b.transform("babelify", {presets: ["es2015", "react", "stage-0"]})
     b.on('update', bundle); // on any dep update, runs the bundler
     b.on('log', gutil.log); // output build logs to terminal
 
