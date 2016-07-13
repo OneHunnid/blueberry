@@ -1,3 +1,5 @@
-import Project from './project';
+import ToDo from './ToDo/index';
+import foo from './foo';
 
-new Project();
+// new ToDo();
+new foo();

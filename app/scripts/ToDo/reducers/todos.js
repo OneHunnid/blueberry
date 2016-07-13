@@ -1,3 +1,7 @@
+// Reducres are pure functions that takes the previous state
+// and an action, and returns the next state.
+// e.g. (previousState, action) => newState
+
 const todo = (state, action) => {
   switch (action.type) {
     case 'ADD_TODO':
