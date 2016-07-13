@@ -2,9 +2,10 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import Emitter from 'event-emitter';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Provider } from 'react-redux'
 
-import Home from './component/Home.js';
-import Store from './store/Store';
+import App from './components/App';
+import store from './store/store';
 
 
 export default class Project {
@@ -13,9 +14,9 @@ export default class Project {
   }
   render() {
     ReactDOM.render((
-      <Router history={hashHistory}>
-          <Route path="/" component={Home} store={Store}/>
-      </Router>
+      <Provider store={store}>
+        <App />
+      </Provider>
       ), document.querySelector('.react-container')
     );
   }
