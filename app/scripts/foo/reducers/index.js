@@ -1,6 +1,13 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux'
 
-const info = (state={}, action) => {
+const info = (state={
+    user: {
+      name: null,
+      position: null,
+      contact: null,
+    }
+  }, action) => {
   switch (action.type) {
     case 'CHANGE_NAME':
       return {
@@ -20,6 +27,9 @@ const info = (state={}, action) => {
 }
 
 
-const businessCardApp = combineReducers({ info })
+const businessCardApp = combineReducers({
+    ...info,
+    routing: routerReducer
+  })
 
 export default businessCardApp;
