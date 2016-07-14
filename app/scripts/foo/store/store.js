@@ -12,7 +12,7 @@ const store = createStore(
 
 
 // test dispatch to make sure things work so far between actions/reducers/store
-store.dispatch(changeName('chris'))
+// store.dispatch(changeName('chris'))
 // store.dispatch(changeName('john'))
 
 export default store;

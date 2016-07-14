@@ -9,6 +9,20 @@ import store from './store/store';
 
 const history = syncHistoryWithStore(hashHistory, store)
 
+// export default class Foo {
+//   constructor(props) {
+//     this.render();
+//   }
+//   render() {
+//     ReactDOM.render((
+//       <Provider store={store}>
+//         <App />
+//       </Provider>
+//       ),document.querySelector('.react-container')
+//     );
+//   }
+// }
+
 export default class Foo {
   constructor(props) {
     this.render();

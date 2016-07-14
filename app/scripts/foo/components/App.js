@@ -43,9 +43,9 @@ import { changeName } from './../actions/index';
 // }
 
 @connect((store) => {
-  console.log(store)
+  console.log(store.info)
   return {
-    name: "Adam",
+    name: store.info.name
   }
 })
 

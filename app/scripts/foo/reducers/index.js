@@ -28,7 +28,7 @@ const info = (state={
 
 
 const businessCardApp = combineReducers({
-    ...info,
+    info,
     routing: routerReducer
   })
 
