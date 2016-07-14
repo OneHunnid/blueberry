@@ -4,26 +4,13 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux'
 
-import App from './components/App';
+import App from './containers/App';
 import store from './store/store';
 
 const history = syncHistoryWithStore(hashHistory, store)
 
-// export default class Foo {
-//   constructor(props) {
-//     this.render();
-//   }
-//   render() {
-//     ReactDOM.render((
-//       <Provider store={store}>
-//         <App />
-//       </Provider>
-//       ),document.querySelector('.react-container')
-//     );
-//   }
-// }
-
 export default class Foo {
+  
   constructor(props) {
     this.render();
   }

@@ -4,8 +4,6 @@ import { routerReducer } from 'react-router-redux'
 const info = (state={
     user: {
       name: null,
-      position: null,
-      contact: null,
     }
   }, action) => {
   switch (action.type) {
