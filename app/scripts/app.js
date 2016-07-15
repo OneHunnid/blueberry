@@ -1,5 +1,7 @@
-import ToDo from './ToDo/index';
-import foo from './foo';
+import ToDo from './ToDo/index'
+import foo from './foo'
+import Corelink from './corelink'
 
 // new ToDo();
-new foo();
+// new foo();
+new Corelink();
