@@ -11,11 +11,9 @@ const ref = Firebase.initializeApp(FIREBASECONFIG);
 
 const firebaseTools = {
   getInitialData: () => {
-    const obj = Firebase.database().ref('/').on('value', function(snapshot) {
-      return snapshot.val();
+    return Firebase.database().ref('/').on('value', (snapshot) => {
+       return snapshot.val();
     });
-
-    return obj;
   }
 }
 

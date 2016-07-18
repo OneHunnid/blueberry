@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux'
+import firebaseTools from './../utils/firebaseWrapper'
+import data from './../data/data'
 
 const retrieveData = (state={}, action) => {
   switch (action.type) {
@@ -9,19 +11,6 @@ const retrieveData = (state={}, action) => {
         fetching: true,
         data: data
       }
-      case 'FETCH_DATA_REJECTED':
-        return {
-          ...state,
-          fetching: false,
-          error: action.payload,
-        }
-      case 'FETCH_DATA':
-        return {
-          ...state,
-          fetching: false,
-          fetched: true,
-          data: action.payload,
-        }
     default:
       return state
   }

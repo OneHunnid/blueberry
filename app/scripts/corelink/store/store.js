@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from 'redux'
 import combinedReducers from './../reducers/index'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
-// import { fetchData } from './../actions/fetchData'
+import { fetchData } from './../actions/fetchData'
 
 const middleware = applyMiddleware(logger(), thunk);
 
