@@ -20,7 +20,7 @@ export default class Corelink {
           <Route path="/" component={App} />
         </Router>
       </Provider>
-      ),document.querySelector('.react-container')
+    ),document.querySelector('.root')
     );
   }
 }

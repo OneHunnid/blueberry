@@ -4,24 +4,25 @@ export default class LinkList extends React.Component {
   render() {
     const data = this.props.data.categories;
 
-    const title = data.map((obj, index) => {
-      return <div key={index}>{obj.title}</div>;
-    })
+    const list = data.map((obj, index) => {
 
-    const links = data.map((obj, index) => {
       let name = obj.links.map((obj, index) => {
-        return <li key={index}>{obj.name}</li>;
+        return <a href={obj.url} className="core-list-item" key={index}>{obj.name}<span className="core-list-item-desc">{obj.desc}</span></a>;
       })
 
-      return <ul>{name}</ul>;
-    })
+      return (
+        <div className="core-container">
+          <div className="core-title" key={index}>{obj.title}</div>
+          <div className="core-list">{name}</div>
+        </div>
+      )
+    });
 
     return (
-      <div>
-        <div>{title}</div>
-        <div>{links}</div>
-      </div>
-
+      <section className="core">
+        <div className="heading">CoreLink</div>
+        <div className="core-wrapper">{list}</div>
+      </section>
     )
   }
 }

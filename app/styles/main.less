@@ -1,11 +1,11 @@
 /* Import
 *******************************/
-@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
+@import 'https://fonts.googleapis.com/css?family=Lato:100,300,400,700';
 
 
 /* Variables
 *******************************/
-@lato: lato, "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@lato: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 @color-white: #ffffff;
 @color-black: #282C2D;
@@ -35,6 +35,7 @@ body {
 	letter-spacing: .5px;
 	-webkit-font-smoothing: antialiased;
 	position: relative;
+  background: #f2f2f2;
 }
 
 
@@ -75,7 +76,8 @@ a {
 }
 
 ul {
-  list-style: circle inside; }
+  list-style: none;
+}
 
 ol {
   list-style: decimal inside;
@@ -99,9 +101,71 @@ li {
 }
 
 .container {
-  max-width: 108rem;
-  margin: 0 auto;
 	position: relative;
 	width: 100%;
-	padding: 0 20px;
+	padding: 64px;
+}
+
+.heading {
+  font-size: 36px;
+  margin-bottom: 24px;
+  font-weight: 300;
+  width: 24%;
+}
+
+.core {
+  display: flex;
+  margin-bottom: 48px;
+  border-bottom: 2px solid #ddd;
+  padding-top: 48px;
+
+  &-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 76%;
+  }
+
+  &-container {
+    margin: 5px;
+    width: 170px;
+    margin-bottom: 48px;
+  }
+
+  &-title {
+    font-weight: 400;
+    font-size: 15px;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin-bottom: 8px;
+  }
+
+  &-list {
+
+  }
+
+  &-list-item {
+    display: block;
+    font-size: 13px;
+    color: #888;
+    text-transform: capitalize;
+    letter-spacing: 0;
+    transition: opacity 0.14s ease-in-out;
+
+    &:hover {
+      color: #444;
+
+      .core-list-item-desc {
+        opacity: 1;
+        color: #888;
+        padding-left: 10px;
+      }
+    }
+  }
+
+  &-list-item-desc {
+    padding-left: 15px;
+    opacity: 0;
+    transition: 0.14s ease-in-out all;
+  }
 }
