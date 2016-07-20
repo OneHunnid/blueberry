@@ -2,6 +2,7 @@ import React from 'react'
 import { fetchData } from './../actions/fetchData'
 import { connect } from 'react-redux';
 import LinkList from './../components/LinkList'
+import { Link } from 'react-router'
 
 @connect((store) => {
   console.log(store)
@@ -11,7 +12,7 @@ import LinkList from './../components/LinkList'
   }
 })
 
-export default class App extends React.Component {
+export default class Home extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -28,6 +29,7 @@ export default class App extends React.Component {
       return (
         <div>
           <LinkList data={this.props.data} dispatch={this.props.dispatch}/>
+          <Link to="/page">Click me</Link>
         </div>
       )
     }

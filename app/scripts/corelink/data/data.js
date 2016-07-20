@@ -25,7 +25,7 @@ const data = {
       "links" : [
         {
           "name": "Policy",
-          "url": "www.#.com",
+          "url": "/#/page",
           "desc": "foobar baz"
         },
         {

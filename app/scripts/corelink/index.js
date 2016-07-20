@@ -4,7 +4,9 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import { Provider } from 'react-redux'
 import { syncHistoryWithStore } from 'react-router-redux'
 
-import App from './containers/App'
+import Home from './containers/Home'
+import Page from './containers/Page'
+
 import store from './store/store'
 
 const history = syncHistoryWithStore(hashHistory, store)
@@ -17,7 +19,8 @@ export default class Corelink {
     ReactDOM.render((
       <Provider store={store}>
         <Router history={history}>
-          <Route path="/" component={App} />
+          <Route path="/" component={Home} />
+          <Route path="/page" component={Page} />
         </Router>
       </Provider>
     ),document.querySelector('.root')
