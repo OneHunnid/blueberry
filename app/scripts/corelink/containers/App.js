@@ -15,11 +15,21 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
   }
+  componentWillMount() {
+    this.props.dispatch(fetchData());
+  }
   render() {
-    return (
-      <div>
-        <LinkList data={this.props.data} dispatch={this.props.dispatch}/>
-      </div>
-    )
+    if (this.props.data === undefined) {
+      return (
+        <div>Loading...</div>
+      )
+    }
+    else {
+      return (
+        <div>
+          <LinkList data={this.props.data} dispatch={this.props.dispatch}/>
+        </div>
+      )
+    }
   }
 }
