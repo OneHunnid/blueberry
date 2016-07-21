@@ -7,9 +7,9 @@ export default class LinkList extends React.Component {
     const list = data.map((obj, index) => {
 
       let name = obj.links.map((obj, index) => {
-        return <a href={obj.url} className="core-list-item" key={index}>{obj.name}
+        return (<a href={obj.url} className="core-list-item" key={index}>{obj.name}
         <span className="core-list-item-desc">{obj.desc}</span>
-        </a>;
+        </a>)
       })
 
       return (
@@ -22,7 +22,6 @@ export default class LinkList extends React.Component {
 
     return (
       <section className="core">
-        <div className="heading">CoreLink</div>
         <div className="core-wrapper">{list}</div>
       </section>
     )

@@ -6,6 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 
 import Home from './containers/Home'
 import Page from './containers/Page'
+import MainLayout from './containers/MainLayout'
 
 import store from './store/store'
 
@@ -19,8 +20,10 @@ export default class Corelink {
     ReactDOM.render((
       <Provider store={store}>
         <Router history={history}>
-          <Route path="/" component={Home} />
-          <Route path="/page" component={Page} />
+          <Route component={MainLayout}>
+            <Route path="/" component={Home} />
+            <Route path="/page" component={Page} />
+          </Route>
         </Router>
       </Provider>
     ),document.querySelector('.root')
